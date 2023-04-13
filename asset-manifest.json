@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/random-fact-fetcher/static/css/main.ccb8f080.css",
+    "main.js": "/random-fact-fetcher/static/js/main.2c593473.js",
+    "static/js/787.e904486f.chunk.js": "/random-fact-fetcher/static/js/787.e904486f.chunk.js",
+    "index.html": "/random-fact-fetcher/index.html",
+    "main.ccb8f080.css.map": "/random-fact-fetcher/static/css/main.ccb8f080.css.map",
+    "main.2c593473.js.map": "/random-fact-fetcher/static/js/main.2c593473.js.map",
+    "787.e904486f.chunk.js.map": "/random-fact-fetcher/static/js/787.e904486f.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ccb8f080.css",
+    "static/js/main.2c593473.js"
+  ]
+}
