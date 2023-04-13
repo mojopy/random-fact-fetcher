@@ -1,0 +1,10 @@
+body {
+  background-image: none;
+  background-repeat: no-repeat;
+  background-color: black;
+  backdrop-filter: blur(5px) grayscale(15%);
+}
+
+.factP {
+  -webkit-text-stroke: 3px rgba(0, 0, 0, 0.767);
+}
