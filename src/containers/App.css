@@ -3,27 +3,47 @@
   src: local('Alkatra'), url('../fonts/Alkatra-VariableFont_wght.ttf');
 }
 
-body {
-  background-image: none;
-  background-repeat: no-repeat;
-  background-color: black;
+:root {
+  --currentBackground: none;
+  --midwayBackground: none;
+  --oldBackground: none;
 }
 
 #full-page-effects {
   position: fixed;
   padding: 0;
   margin: 0;
-  
   width: 100%;
   height: 100%;
-  backdrop-filter: blur(10px) grayscale(55%);
-
   display: flex;
   align-items: center; justify-content: center;
+}
+
+#bgDiv {
+  background-image: var(--midwayBackground);
+  position: fixed;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.gradualAnimation {
+  animation: gradualBg 1s linear 0ms 1 normal forwards;
 }
 
 .factP {
   font-family: 'Alkatra';
   font-size: 1.15em;
   text-shadow: -1px -1px 0 #00000091, 1px -1px 0 #00000091, -1px 1px 0 #00000091, 1px 1px 0 #00000091;
+}
+
+@keyframes gradualBg {
+  from {background-image: var(--oldBackground);}
+  to {background-image: var(--currentBackground);}
+}
+
+@-webkit-keyframes gradualBg {
+  from {background-image: var(--oldBackground);}
+  to {background-image: var(--currentBackground);}
 }

@@ -8,31 +8,61 @@ import fetchRandomBG from "../components/NewBG";
 import NewFactButton from "../components/newFactButton";
 
 class App extends Component {
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state= {
-      currFact: ''
+      currFact: '',
+      currBG: '',
+      numberOfChanges: 0
     }
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
     this.onFactRequest();
   }
 
   onFactRequest = () => {
+    const { numberOfChanges } = this.state;
+    let t = "";
     fetchRandomFact().then(r => this.setState({ currFact: r }));
-    fetchRandomBG().then(r => document.body.style.backgroundImage = "url(" + r + ")");
+    fetchRandomBG().then(r => {
+      this.setState({ currBG: r, numberOfChanges: numberOfChanges+1 })
+      t = r;
+    }).then( r => {  
+      if (numberOfChanges > 0) {
+        this.animation();
+      } else {
+        let ro = document.querySelector(':root');
+        ro.style.setProperty('--midwayBackground', "url("+t+")");
+      }
+    });
   }
 
+  animation() {
+    let ro = document.querySelector(':root');
+    document.getElementById('bgDiv').className='gradualAnimation';
+    setTimeout(() => {
+      ro.style.setProperty('--midwayBackground', "url("+this.state.currBG+")");
+      document.getElementById('bgDiv').classList.remove("gradualAnimation");
+    }, 1200)
+  }
+  
   render() {
-    const { currFact } = this.state;
+    const { currFact, currBG } = this.state;
+    let ro = document.querySelector(':root');
+    let newOld = getComputedStyle(ro).getPropertyValue('--currentBackground');
+    ro.style.setProperty('--oldBackground', newOld);
+    ro.style.setProperty('--currentBackground', "url("+currBG+")");
+    ro = null;
 
     return (
       <>
-        <div id="full-page-effects">
-          <div className="tc" id="main-div">
-              <NewFactButton grabNewFact={this.onFactRequest}/>
-              <FactRenderer fact={currFact}/>
+        <div id="bgDiv">
+          <div id="full-page-effects" style={{backdropFilter: "blur(10px) grayscale(50%)"}}>
+            <div className="tc" id="main-div">
+                <NewFactButton grabNewFact={this.onFactRequest}/>
+                <FactRenderer fact={currFact}/>
+            </div>
           </div>
         </div>
       </>
