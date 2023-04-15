@@ -28,10 +28,14 @@ class App extends Component {
     const { currFact } = this.state;
 
     return (
-      <div className="tc">
-        <NewFactButton grabNewFact={this.onFactRequest}/>
-        <FactRenderer fact={currFact}/>
-      </div>
+      <>
+        <div id="full-page-effects">
+          <div className="tc" id="main-div">
+              <NewFactButton grabNewFact={this.onFactRequest}/>
+              <FactRenderer fact={currFact}/>
+          </div>
+        </div>
+      </>
     )
   }
 }

@@ -8,7 +8,7 @@ const NewFactButton = ({ grabNewFact }) => {
                 type="fetch"
                 onClick={grabNewFact}
             >
-                New Fact
+                Another one!
             </button>
         </>
     );
